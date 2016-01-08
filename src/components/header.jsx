@@ -6,7 +6,7 @@ module.exports = React.createClass({
 	render: function() {
 		return <nav className="navbar navbar-default header">
 			<div className="container-fluid">
-				<Link to="/" className="navbar-brand">
+				<Link to="/" className="navbar-brand navbar-left">
 					Imgur Browser
 				</Link>
 				<ul className="nav navbar-nav navbar-right">
