@@ -1,8 +1,11 @@
 var React = require('react');
-var Api = require('../utils/api');
+var Reflux = require('reflux');
+var TopicStore = require('../stores/topic-stores.jsx');
 
 module.exports = React.createClass({
-
+	mixins: [
+		Reflux.listenTo(TopicStore, 'onChange')
+	],
 	// default our state by setting the state to nothing, with empty array
 	getInitialState: function() {
 		return {
@@ -10,14 +13,9 @@ module.exports = React.createClass({
 		}
 	},
 
-	// run before component is rended
+	// run before component is rended, we will make an asynchronous call to Api.get
 	componentWillMount: function() {
-		Api.get('topics/defaults')
-			.then(function(data) {
-				this.setState({
-					topics: data.data
-				});
-		}.bind(this));
+		TopicStore.getTopics();
 	},
 
 	render: function() {
@@ -34,5 +32,9 @@ module.exports = React.createClass({
 				{topic}
 			</li>
 		});
+	},
+
+	onChange: function(event, topics) {
+		this.setState({ topics: topics })
 	}
 });
