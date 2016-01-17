@@ -4,6 +4,7 @@ var apiKey = 'b4e88888f6f2b1e';
 
 module.exports = window.api =  {
 	get: function(url) {
+		// make an AJAX request to what ever url we pass to it
 		return fetch(rootUrl + url, {
 			headers: {
 				'Authorization': 'Client-ID ' + apiKey
@@ -11,6 +12,9 @@ module.exports = window.api =  {
 		})
 		.then(function(response) {
 			return response.json()
+		})
+		.then(function(data) {
+			console.log(data);
 		});
 	}
 };

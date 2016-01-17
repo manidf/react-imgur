@@ -1,16 +1,15 @@
 var React = require('react');
 var ReactRouter = require('react-router');
+var HashHistory = require('history');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 
 var Main = require('./components/main');
 
-var routs = (
+module.exports = (
 	<Router>
 		<Route path="/" component={Main}>
 
 		</Route>
 	</Router>
 );
-
-module.exports = routs;
